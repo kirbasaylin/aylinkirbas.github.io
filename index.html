@@ -1,1435 +1,538 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Aylin Kirbas</title>
-<meta name="description" content="Aylin Kirbas — Electrical & Computer Engineering and Geographic Information Science at The Ohio State University." />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a192f'/%3E%3Ctext x='50' y='68' font-family='Inter,sans-serif' font-size='56' fill='%2364ffda' text-anchor='middle' font-weight='700'%3EA%3C/text%3E%3C/svg%3E" />
+<title>Aylin Kirbas | Engineer</title>
+<meta name="description" content="Aylin Kirbas. Electrical & Computer Engineering and Geographic Information Science at The Ohio State University. Embedded systems, computer vision, and spatial software." />
+<meta property="og:title" content="Aylin Kirbas, Engineer" />
+<meta property="og:description" content="ECE & GIS at Ohio State. Embedded systems, computer vision, and spatial software." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0b'/%3E%3Ctext x='50' y='70' font-family='Georgia,serif' font-size='62' fill='%235ff2c2' text-anchor='middle' font-weight='500'%3Ea%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>document.documentElement.className = 'js';</script>
 <style>
   :root {
-    --bg: #0a192f;
-    --bg-light: #112240;
-    --bg-lightest: #233554;
-    --slate: #8892b0;
-    --slate-light: #a8b2d1;
-    --slate-lightest: #ccd6f6;
-    --white: #e6f1ff;
-    --accent: #64ffda;
-    --accent-tint: rgba(100, 255, 218, 0.1);
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, monospace;
+    --ink:    #0a0a0b;
+    --ink-2:  #0e0e11;
+    --card:   #0d0d10;
+    --line:   rgba(255,255,255,0.09);
+    --line-2: rgba(255,255,255,0.055);
+    --fg:     #ececeb;
+    --dim:    #9a9aa0;
+    --faint:  #67676d;
+    --accent: #5ff2c2;
+    --accent-soft: rgba(95,242,194,0.12);
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans:  'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
+    --mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --maxw: 980px;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
   body {
-    background: var(--bg);
-    color: var(--slate);
-    font-family: var(--font-sans);
+    background: var(--ink);
+    color: var(--fg);
+    font-family: var(--sans);
     font-size: 16px;
-    line-height: 1.55;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     min-height: 100vh;
   }
 
-  /* spotlight follows cursor — subtle blue glow */
+  /* atmosphere: faint top glow + dot grid */
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    background: radial-gradient(
-      600px at var(--mx, 50%) var(--my, 50%),
-      rgba(29, 78, 216, 0.10),
-      transparent 80%
-    );
-    transition: background 200ms ease;
+    content:'';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(900px 520px at 75% -10%, rgba(95,242,194,0.07), transparent 70%),
+      radial-gradient(700px 500px at 0% 0%, rgba(95,242,194,0.035), transparent 60%);
   }
 
-  a { color: var(--slate-lightest); text-decoration: none; transition: color 0.2s ease; }
-  a:hover { color: var(--accent); }
-  ::selection { background: var(--accent); color: var(--bg); }
-  button { font-family: inherit; cursor: pointer; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent); color: var(--ink); }
+  ::-moz-selection { background: var(--accent); color: var(--ink); }
 
-  .container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 80px;
-    position: relative;
-    z-index: 2;
-  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-  }
-
-  /* LEFT — fixed bio */
-  .pane-left {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    max-height: 100vh;
-    padding: 96px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  /* RIGHT — scrolling */
-  .pane-right {
-    padding: 96px 0;
-  }
-
-  /* ===== LEFT PANE ===== */
-  .name {
-    font-weight: 800;
-    font-size: clamp(40px, 5vw, 48px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--slate-lightest);
-    margin-bottom: 12px;
-  }
-  .role {
-    font-weight: 500;
-    font-size: 19px;
-    color: var(--slate-lightest);
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
-  .tagline {
-    font-size: 15.5px;
-    color: var(--slate);
-    max-width: 360px;
-    line-height: 1.5;
-    margin-bottom: 48px;
-  }
-
-  .nav-list { list-style: none; }
-  .nav-link {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 0;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+  .mono {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--slate);
-    transition: color 0.2s ease;
-  }
-  .nav-link::before {
-    content: '';
-    display: inline-block;
-    width: 32px;
-    height: 1px;
-    background: var(--slate);
-    margin-right: 16px;
-    transition: all 0.2s ease;
-  }
-  .nav-link:hover, .nav-link.active {
-    color: var(--slate-lightest);
-  }
-  .nav-link:hover::before, .nav-link.active::before {
-    width: 64px;
-    background: var(--slate-lightest);
+    color: var(--faint);
   }
 
-  .socials {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-  .socials a {
-    color: var(--slate);
-    transition: all 0.2s ease;
-    display: inline-flex;
-    padding: 4px;
-  }
-  .socials a:hover { color: var(--slate-lightest); transform: translateY(-2px); }
-  .socials svg { width: 22px; height: 22px; }
-
-  /* ===== RIGHT PANE ===== */
-  section {
-    margin-bottom: 96px;
-    scroll-margin-top: 24px;
-  }
-  section:last-child { margin-bottom: 0; }
-
-  .section-header {
-    display: none;
-  }
-  @media (max-width: 1023px) {
-    .section-header {
-      display: block;
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      background: rgba(10, 25, 47, 0.85);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      margin: 0 -24px 24px;
-      padding: 20px 24px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--slate-lightest);
-      font-weight: 700;
-    }
-  }
-
-  .prose p {
-    font-size: 16px;
-    line-height: 1.65;
-    color: var(--slate);
-    margin-bottom: 16px;
-  }
-  .prose p:last-child { margin-bottom: 0; }
-  .prose strong, .prose a {
-    color: var(--slate-lightest);
-    font-weight: 500;
-  }
-  .prose a {
+  /* ============ NAV ============ */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    background: rgba(10,10,11,0.55);
     border-bottom: 1px solid transparent;
-    transition: all 0.2s ease;
+    transition: border-color .3s ease, background .3s ease;
   }
-  .prose a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  header.nav.scrolled { border-bottom-color: var(--line-2); background: rgba(10,10,11,0.78); }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--serif); font-size: 19px; font-weight: 500;
+    letter-spacing: -0.01em; color: var(--fg);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .brand .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--dim); transition: color .2s ease; position: relative;
+  }
+  .nav-links a::after {
+    content:''; position:absolute; left:0; bottom:-6px; height:1px; width:0; background: var(--accent); transition: width .25s ease;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--fg); }
+  .nav-links a.active::after { width: 100%; }
+  @media (max-width: 680px){ .nav-links a:not(.cta){ display:none; } }
 
-  /* ===== EXPERIENCE / PROJECT CARDS ===== */
-  .item {
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    gap: 24px;
-    padding: 18px;
-    margin: 0 -18px 8px;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    color: inherit;
+  /* ============ HERO ============ */
+  .hero { padding: 120px 0 96px; }
+  .eyebrow { display:inline-flex; align-items:center; gap:12px; margin-bottom: 30px; }
+  .eyebrow .ln { width: 34px; height: 1px; background: var(--accent); }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 350;
+    font-size: clamp(48px, 9vw, 104px); line-height: 0.96;
+    letter-spacing: -0.035em; color: var(--fg);
+    margin-bottom: 26px;
   }
-  .item:last-child { margin-bottom: 0; }
-  .item:hover {
-    background: rgba(35, 53, 84, 0.4);
-    border-color: rgba(35, 53, 84, 0.5);
+  .hero h1 em { font-style: italic; color: var(--accent); font-weight: 350; }
+  .hero .role-sub { font-family: var(--serif); font-weight: 350; font-size: clamp(23px,3.4vw,34px); letter-spacing:-0.02em; color: var(--dim); margin-bottom: 30px; }
+  .hero .role-sub em { font-style: italic; color: var(--accent); }
+  .hero .lede {
+    font-size: clamp(17px, 2.2vw, 20px); color: var(--dim);
+    max-width: 620px; line-height: 1.6; margin-bottom: 38px;
   }
-  .item:hover .item-title { color: var(--accent); }
-  .item:hover .item-title svg { opacity: 1; transform: translate(2px, -2px); }
-
-  .item-meta {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--slate);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding-top: 4px;
-    line-height: 1.4;
-  }
-  .item-meta .badge {
-    display: inline-block;
-    margin-top: 6px;
-    padding: 2px 8px;
-    border-radius: 3px;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    font-weight: 600;
-  }
-  .item-meta .badge.now { background: var(--accent-tint); color: var(--accent); }
-  .item-meta .badge.next { background: rgba(255, 200, 100, 0.12); color: #ffd166; }
-
-  .item-title {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--slate-lightest);
-    margin-bottom: 4px;
-    letter-spacing: -0.01em;
-    transition: color 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .item-title svg {
-    width: 13px;
-    height: 13px;
-    opacity: 0;
-    transform: translate(-3px, 3px);
-    transition: all 0.2s ease;
-  }
-  .item-org {
-    font-size: 14.5px;
-    color: var(--slate-light);
-    margin-bottom: 12px;
-    font-weight: 500;
-  }
-  .item-desc {
-    font-size: 14.5px;
-    color: var(--slate);
-    line-height: 1.6;
-    margin-bottom: 8px;
-  }
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 8px;
-    margin-top: 14px;
-  }
-  .tag {
-    display: inline-block;
-    background: var(--accent-tint);
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 999px;
-    letter-spacing: 0.02em;
-  }
-
-  /* ===== PROJECT DEMO STAGES ===== */
-  .item.has-demo { grid-template-columns: 1fr; gap: 18px; }
-  .has-demo .demo-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 4px;
-  }
-  .demo-num {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  .demo-repo {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--slate);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.2s ease;
-  }
-  .demo-repo:hover { color: var(--accent); }
-  .demo-repo svg { width: 13px; height: 13px; }
-
-  .demo-stage {
-    background: var(--bg-light);
-    border: 1px solid var(--bg-lightest);
-    border-radius: 6px;
-    overflow: hidden;
-    margin-top: 8px;
-  }
-  .demo-bar {
-    background: var(--bg);
-    border-bottom: 1px solid var(--bg-lightest);
-    padding: 10px 14px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--slate);
-    letter-spacing: 0.06em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .demo-bar .dots { display: inline-flex; gap: 6px; margin-right: 12px; vertical-align: middle; }
-  .demo-bar .dots i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-  .demo-bar .dots i:nth-child(1) { background: #ff5f57; }
-  .demo-bar .dots i:nth-child(2) { background: #febc2e; }
-  .demo-bar .dots i:nth-child(3) { background: #28c840; }
-
-  .demo-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 12px 14px;
-    align-items: center;
-    border-bottom: 1px solid rgba(35, 53, 84, 0.5);
-  }
+  .hero .lede strong { color: var(--fg); font-weight: 500; }
+  .hero-row { display: flex; flex-wrap: wrap; gap: 14px 14px; align-items: center; }
   .btn {
-    background: var(--accent-tint);
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 7px 14px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    border-radius: 4px;
-    transition: all 0.15s ease;
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 13px 20px; border-radius: 100px; border: 1px solid var(--line);
+    color: var(--fg); transition: all .2s ease;
   }
-  .btn:hover { background: rgba(100, 255, 218, 0.16); }
-  .btn:disabled { opacity: 0.3; cursor: not-allowed; }
-  .btn.alt {
-    background: transparent;
-    color: var(--slate-lightest);
-    border-color: var(--bg-lightest);
-  }
-  .btn.alt:hover { border-color: var(--slate-lightest); background: rgba(35, 53, 84, 0.3); }
+  .btn svg { width: 15px; height: 15px; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .btn.primary { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+  .btn.primary:hover { background: #7ff6d2; color: var(--ink); box-shadow: 0 8px 30px rgba(95,242,194,0.25); }
 
-  .ctrl-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--slate);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-left: 4px;
-  }
-  .ctrl-val {
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    background: var(--bg);
-    border: 1px solid var(--bg-lightest);
-    color: var(--slate-lightest);
-    padding: 4px 10px;
-    border-radius: 3px;
-    min-width: 50px;
-    text-align: center;
-  }
+  /* ============ SECTION SHELL ============ */
+  section { padding: 78px 0; }
+  .sec-head { display:flex; align-items:baseline; gap:18px; margin-bottom: 46px; }
+  .sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.05em; }
+  .sec-head h2 { font-family: var(--serif); font-weight: 380; font-size: clamp(26px,4vw,38px); letter-spacing:-0.02em; color: var(--fg); }
+  .sec-head .rule { flex:1; height:1px; background: var(--line-2); align-self:center; }
 
-  #pf-canvas {
-    width: 100%;
-    height: 380px;
-    display: block;
-    cursor: crosshair;
-    background: var(--bg);
-  }
-  @media (max-width: 700px) { #pf-canvas { height: 280px; } }
+  /* ============ ABOUT ============ */
+  .about-grid { display:grid; grid-template-columns: 1.55fr 1fr; gap: 56px; }
+  .about p { font-size: 16.5px; color: var(--dim); margin-bottom: 18px; line-height: 1.72; }
+  .about p:last-child { margin-bottom: 0; }
+  .about a { color: var(--fg); border-bottom:1px solid var(--line); transition: all .2s ease; }
+  .about a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .about strong { color: var(--fg); font-weight: 500; }
+  .facts { display:flex; flex-direction:column; gap: 20px; }
+  .fact { border-left: 1px solid var(--line); padding-left: 18px; }
+  .fact .k { font-family: var(--mono); font-size: 10.5px; letter-spacing:0.14em; text-transform:uppercase; color: var(--faint); margin-bottom: 5px; }
+  .fact .v { font-size: 15px; color: var(--fg); line-height:1.5; }
+  @media (max-width: 760px){ .about-grid{ grid-template-columns:1fr; gap:38px; } }
 
-  .vid-wrap {
-    position: relative;
-    aspect-ratio: 16 / 10;
-    background: #000;
-    overflow: hidden;
+  /* ============ WORK / TIMELINE ============ */
+  .work-list { display:flex; flex-direction:column; }
+  .role {
+    display:grid; grid-template-columns: 150px 1fr; gap: 28px;
+    padding: 26px 18px; margin: 0 -18px; border-radius: 12px;
+    border:1px solid transparent; transition: all .25s ease;
   }
-  .vid-wrap video, .vid-wrap canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scaleX(-1);
-  }
-  .vid-wrap canvas { pointer-events: none; }
-  .vid-ph {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 30px;
-    text-align: center;
-    color: var(--slate);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    line-height: 1.6;
-    z-index: 2;
-  }
-  .vid-ph .ico {
-    width: 50px;
-    height: 50px;
-    border: 1.5px dashed var(--slate);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    color: var(--slate-lightest);
-  }
-  .vid-ph .ttl {
-    color: var(--slate-lightest);
-    font-size: 12.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  .vid-ph small {
-    max-width: 320px;
-    color: var(--slate);
-    line-height: 1.5;
-    text-transform: none;
-    letter-spacing: 0;
-    font-size: 11.5px;
-  }
+  .role + .role { border-top: 1px solid var(--line-2); border-top-left-radius:0; border-top-right-radius:0; }
+  .role:hover { background: var(--ink-2); border-color: var(--line-2); }
+  .role:hover .role-co { color: var(--accent); }
+  .role-when { font-family: var(--mono); font-size: 11.5px; color: var(--faint); letter-spacing:0.04em; padding-top: 4px; line-height:1.5; }
+  .role-when .badge { display:inline-block; margin-top:8px; padding:2px 9px; border-radius:4px; font-size:10px; letter-spacing:0.06em; background: var(--accent-soft); color: var(--accent); }
+  .role-co { font-size: 18px; font-weight: 600; color: var(--fg); letter-spacing:-0.01em; transition: color .2s ease; }
+  .role-title { font-size: 14px; color: var(--accent); font-family: var(--mono); letter-spacing: 0.02em; margin: 3px 0 10px; }
+  .role-desc { font-size: 14.8px; color: var(--dim); line-height: 1.62; margin-bottom: 12px; }
+  .chips { display:flex; flex-wrap:wrap; gap:7px; }
+  .chip { font-family: var(--mono); font-size: 10.5px; letter-spacing:0.04em; color: var(--dim); padding:3px 9px; border:1px solid var(--line-2); border-radius: 5px; }
+  @media (max-width: 680px){ .role{ grid-template-columns:1fr; gap:10px; } .role-when{ padding-top:0; } }
 
-  .word-bar {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    right: 12px;
-    background: rgba(10, 25, 47, 0.86);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1px solid var(--bg-lightest);
-    border-radius: 4px;
-    padding: 8px 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transform: scaleX(-1);
-    z-index: 3;
+  /* ============ PROJECTS ============ */
+  .proj-grid { display:grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+  .proj {
+    display:flex; flex-direction:column; position: relative;
+    background: var(--card); border:1px solid var(--line-2); border-radius: 16px;
+    padding: 26px 26px 24px; transition: all .25s cubic-bezier(.2,.7,.3,1);
   }
-  .word-bar .lbl {
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    color: var(--slate);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-  .word-bar .val {
-    flex: 1;
-    font-family: var(--font-mono);
-    font-size: 13.5px;
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .word-bar .progress { width: 60px; height: 3px; background: var(--bg-lightest); overflow: hidden; border-radius: 2px; }
-  .word-bar .progress > i { display: block; height: 100%; background: var(--accent); width: 0%; transition: width 80ms linear; }
+  .proj:hover { transform: translateY(-4px); background: var(--ink-2); border-color: var(--accent); }
+  .proj:hover .proj-title { color: var(--accent); }
+  .proj:hover .proj-go { color: var(--accent); transform: translate(3px,-3px); }
+  .proj-top { display:flex; align-items:center; justify-content:space-between; margin-bottom: 18px; }
+  .proj-id { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--faint); }
+  .proj-go { color: var(--dim); transition: all .25s ease; }
+  .proj-go svg { width: 18px; height: 18px; }
+  .proj-title { font-family: var(--serif); font-weight: 450; font-size: 23px; letter-spacing:-0.015em; color: var(--fg); margin-bottom: 9px; transition: color .2s ease; }
+  .proj-desc { font-size: 14.5px; color: var(--dim); line-height: 1.6; margin-bottom: 18px; flex: 1; }
+  .proj-foot { display:flex; align-items:center; flex-wrap:wrap; gap: 8px 8px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing:0.03em; color: var(--dim); padding: 4px 9px; border-radius: 100px; background: rgba(255,255,255,0.04); border:1px solid var(--line-2); }
+  .tag.lang { color: var(--accent); border-color: var(--accent-soft); }
+  @media (max-width: 760px){ .proj-grid{ grid-template-columns:1fr; } }
 
-  .demo-readout {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    padding: 10px 14px;
-    background: var(--bg);
-    border-top: 1px solid var(--bg-lightest);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--slate);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-  .demo-readout b {
-    color: var(--slate-lightest);
-    margin-left: 8px;
-    font-weight: 600;
-    text-transform: none;
-    letter-spacing: 0;
-    font-size: 12px;
-  }
+  .more-link { margin-top: 30px; display:inline-flex; align-items:center; gap:10px; font-family: var(--mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color: var(--dim); transition: color .2s ease; }
+  .more-link:hover { color: var(--accent); }
+  .more-link svg { width: 14px; height:14px; }
 
-  /* ===== SKILLS ===== */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0 16px;
-    list-style: none;
-    padding: 0 18px;
-  }
-  .skills-grid li {
-    position: relative;
-    padding-left: 20px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--slate-light);
-    line-height: 1.9;
-  }
-  .skills-grid li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-size: 12px;
-    top: 2px;
-  }
+  /* ============ SKILLS ============ */
+  .skill-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 30px 28px; }
+  .skill-col h3 { font-family: var(--mono); font-size: 10.5px; letter-spacing:0.14em; text-transform:uppercase; color: var(--faint); margin-bottom: 14px; }
+  .skill-col ul { list-style:none; display:flex; flex-direction:column; gap: 8px; }
+  .skill-col li { font-size: 14.5px; color: var(--dim); transition: color .15s ease; }
+  .skill-col li:hover { color: var(--fg); }
+  @media (max-width: 760px){ .skill-grid{ grid-template-columns: repeat(2,1fr); gap:26px 22px; } }
 
-  /* ===== FOOTER ===== */
-  .footer {
-    margin-top: 56px;
-    padding: 16px 18px 0;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--slate);
-    line-height: 1.6;
-  }
-  .footer a { color: var(--slate); }
-  .footer a:hover { color: var(--accent); }
-  .footer .built {
-    margin-top: 6px;
-    font-size: 11px;
-    color: rgba(136, 146, 176, 0.7);
-  }
+  /* ============ CONTACT ============ */
+  .contact { text-align:center; padding: 100px 0; }
+  .contact .mono { display:block; margin-bottom: 22px; color: var(--accent); }
+  .contact h2 { font-family: var(--serif); font-weight: 350; font-size: clamp(34px,6vw,62px); letter-spacing:-0.03em; line-height:1.02; margin-bottom: 26px; }
+  .contact h2 a { color: var(--fg); border-bottom: 2px solid var(--line); transition: all .25s ease; }
+  .contact h2 a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .contact p { color: var(--dim); max-width: 460px; margin: 0 auto 34px; font-size: 16px; }
+  .contact-links { display:flex; justify-content:center; flex-wrap:wrap; gap: 12px; }
 
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 1200px) {
-    .container { padding: 0 56px; }
-    .grid { gap: 48px; }
-  }
-  @media (max-width: 1023px) {
-    .container { padding: 0 32px; }
-    .grid { grid-template-columns: 1fr; gap: 0; }
-    .pane-left {
-      position: static;
-      height: auto;
-      max-height: none;
-      padding: 56px 0 32px;
-    }
-    .pane-right { padding: 0 0 56px; }
-    .nav-list { display: none; }
-    .socials { margin-top: 32px; }
-  }
-  @media (max-width: 600px) {
-    .container { padding: 0 24px; }
-    .pane-left { padding: 48px 0 24px; }
-    .name { font-size: 36px; }
-    .item { grid-template-columns: 1fr; gap: 8px; padding: 14px; margin: 0 -14px 8px; }
-    .item-meta { padding-top: 0; }
-    .skills-grid { grid-template-columns: 1fr; padding: 0 14px; }
+  /* ============ FOOTER ============ */
+  footer { border-top:1px solid var(--line-2); }
+  .foot-inner { max-width:var(--maxw); margin:0 auto; padding: 28px 32px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .foot-inner span { font-family: var(--mono); font-size: 11px; letter-spacing:0.05em; color: var(--faint); }
+
+  /* ============ REVEAL ANIMATION ============ */
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+  .js .reveal.in { opacity: 1; transform: none; }
+  .js .stagger > * { opacity:0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+  .js .stagger.in > * { opacity:1; transform:none; }
+  .js .stagger.in > *:nth-child(1){ transition-delay:.05s }
+  .js .stagger.in > *:nth-child(2){ transition-delay:.12s }
+  .js .stagger.in > *:nth-child(3){ transition-delay:.19s }
+  .js .stagger.in > *:nth-child(4){ transition-delay:.26s }
+  .js .stagger.in > *:nth-child(5){ transition-delay:.33s }
+  .js .stagger.in > *:nth-child(6){ transition-delay:.40s }
+  .js .stagger.in > *:nth-child(7){ transition-delay:.47s }
+
+  /* hero load-in */
+  .js .hero .anim { opacity:0; transform: translateY(26px); animation: rise .9s cubic-bezier(.2,.7,.3,1) forwards; }
+  .js .hero .anim.d1{ animation-delay:.05s } .js .hero .anim.d2{ animation-delay:.16s }
+  .js .hero .anim.d3{ animation-delay:.27s } .js .hero .anim.d4{ animation-delay:.38s }
+  .js .hero .anim.d5{ animation-delay:.49s }
+  @keyframes rise { to { opacity:1; transform:none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior:auto !important; }
+    .js .reveal, .js .stagger > *, .js .hero .anim { opacity:1 !important; transform:none !important; }
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="grid">
-
-    <!-- ============ LEFT PANE (sticky) ============ -->
-    <aside class="pane-left">
-      <div>
-        <h1 class="name">Aylin Kirbas</h1>
-        <h2 class="role">Engineer & Builder</h2>
-        <p class="tagline">
-          Junior at Ohio State studying ECE &amp; GIS. I work at the intersection of embedded hardware, computer vision, and spatial systems.
-        </p>
-
-        <nav aria-label="In-page navigation">
-          <ul class="nav-list">
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#experience" class="nav-link">Experience</a></li>
-            <li><a href="#projects" class="nav-link">Projects</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="socials">
-        <a href="https://github.com/kirbasaylin" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-1.93c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.24 3.35.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.66.8.55C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/aylin-kirbas-200139267" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43c-1.14 0-2.06-.92-2.06-2.06s.92-2.06 2.06-2.06 2.06.92 2.06 2.06-.92 2.06-2.06 2.06zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-        </a>
-        <a href="mailto:aylinnkirbas_@outlook.com" aria-label="Email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </a>
-        <a href="tel:+19375469185" aria-label="Phone">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
-      </div>
-    </aside>
-
-    <!-- ============ RIGHT PANE (scrolling) ============ -->
-    <main class="pane-right">
-
-      <!-- ABOUT -->
-      <section id="about">
-        <div class="section-header">About</div>
-        <div class="prose">
-          <p>
-            I'm a junior at <a href="https://www.osu.edu" target="_blank" rel="noopener">The Ohio State University</a> pursuing concurrent B.S. degrees in <strong>Electrical &amp; Computer Engineering</strong> and <strong>Geographic Information Science</strong> with a specialization in Spatial Data Analytics.
-          </p>
-          <p>
-            My work has traced a line through aerospace, defense innovation, healthcare data, and geospatial intelligence. I'm currently a Software Development Intern with <strong>Siemens Digital Industries</strong> in Cincinnati, OH.
-          </p>
-          <p>
-            Earlier this year I was an Engineering SME Intern at <a href="https://www.parallaxresearch.org/" target="_blank" rel="noopener">Parallax Advanced Research</a>, evaluating dual-use AI/ML and autonomous systems for the Defense Innovation Unit. Previously, I led the science mission design for an autonomous lunar/Mars drone through NASA L'SPACE, and built MySQL infrastructure for the National Geospatial-Intelligence Agency through AFRL.
-          </p>
-          <p>
-            Outside of engineering, I play <strong>NCR D1-AA rugby</strong> for Ohio State, contribute to the Underwater Robotics Club, and serve in the Society of Women Engineers.
-          </p>
-        </div>
-      </section>
-
-      <!-- EXPERIENCE -->
-      <section id="experience">
-        <div class="section-header">Experience</div>
-
-        <a class="item" href="https://www.siemens.com/us/en/company/about/businesses/digital-industries.html" target="_blank" rel="noopener">
-          <div class="item-meta">Summer 2026<br/><span class="badge now">Current</span></div>
-          <div>
-            <h3 class="item-title">
-              SWE Intern · Siemens Digital Industries
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </h3>
-            <p class="item-org">Cincinnati, OH</p>
-            <p class="item-desc">Software development intern on the Siemens Digital Industries team — working at the intersection of industrial software, automation, and engineering systems used across aerospace, automotive, and manufacturing.</p>
-            <div class="tags">
-              <span class="tag">Software dev</span><span class="tag">Industrial software</span><span class="tag">Automation</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="item" href="https://www.parallaxresearch.org/" target="_blank" rel="noopener">
-          <div class="item-meta">Jan — May 2026</div>
-          <div>
-            <h3 class="item-title">
-              SME Intern · Parallax Advanced Research
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </h3>
-            <p class="item-org">Columbus, OH</p>
-            <p class="item-desc">Evaluated AI/ML, autonomous, and sensor-based systems for the Defense Innovation Unit, assessing technical feasibility and deployment readiness on edge and data-center compute. Authored technical briefings on architecture, infrastructure dependencies, and integration risk for government and industry stakeholders.</p>
-            <div class="tags">
-              <span class="tag">AI/ML</span><span class="tag">Edge compute</span><span class="tag">Tech briefings</span>
-            </div>
-          </div>
-        </a>
-
-        <div class="item">
-          <div class="item-meta">May — Aug 2025</div>
-          <div>
-            <h3 class="item-title">Chief Scientist · NASA L'SPACE</h3>
-            <p class="item-org">Remote</p>
-            <p class="item-desc">Led scientific mission design for an autonomous drone concept, defining objectives and success criteria via a Science Traceability Matrix for Moon and Mars exploration. Drove cross-functional Agile design reviews across hardware, software, and science teams.</p>
-            <div class="tags">
-              <span class="tag">Systems eng.</span><span class="tag">Mission design</span><span class="tag">Agile</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="item-meta">Jul 2024 — Jul 2025</div>
-          <div>
-            <h3 class="item-title">Data Specialist Intern · OhioHealth</h3>
-            <p class="item-org">Columbus, OH</p>
-            <p class="item-desc">Designed and maintained a centralized CMS database serving 10 hospitals; built optimized SQL queries that improved work-order accuracy and reporting consistency. Automated recurring data-validation and reporting workflows, reducing manual review time.</p>
-            <div class="tags">
-              <span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">ETL</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="item-meta">Sep 2023 — Dec 2025</div>
-          <div>
-            <h3 class="item-title">Research Assistant · AFRL</h3>
-            <p class="item-org">Ohio State University · Columbus, OH</p>
-            <p class="item-desc">Developed and maintained a MySQL database system supporting program tracking for the National Geospatial-Intelligence Agency (NGA). Automated ETL and data-processing pipelines in Python and VBA; built interactive Looker Studio dashboards for real-time program monitoring.</p>
-            <div class="tags">
-              <span class="tag">Python</span><span class="tag">MySQL</span><span class="tag">Looker Studio</span><span class="tag">VBA</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PROJECTS -->
-      <section id="projects">
-        <div class="section-header">Projects</div>
-
-        <!-- PROJECT 001 — GeoJSON Pathfinder -->
-        <div class="item has-demo">
-          <div>
-            <div class="demo-header">
-              <span class="demo-num">P.001 · MAR 2026</span>
-              <a class="demo-repo" href="https://github.com/kirbasaylin/geojson-pathfinder" target="_blank" rel="noopener">
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                kirbasaylin/geojson-pathfinder
-              </a>
-            </div>
-            <h3 class="item-title">GeoJSON Pathfinding Engine</h3>
-            <p class="item-desc">C++17 library that parses GeoJSON spatial datasets into a graph and computes shortest paths with Dijkstra's algorithm backed by an indexed binary min-heap. Sub-millisecond queries on city-scale road networks. <strong style="color: var(--slate-lightest);">Try it →</strong> click any two nodes and watch Dijkstra explore the graph, then lock in the optimal route.</p>
-            <div class="tags">
-              <span class="tag">C++17</span><span class="tag">Dijkstra</span><span class="tag">Indexed min-heap</span><span class="tag">CMake</span><span class="tag">GoogleTest</span>
-            </div>
-
-            <div class="demo-stage">
-              <div class="demo-bar">
-                <span><span class="dots"><i></i><i></i><i></i></span>geojson-pathfinder · interactive</span>
-                <span>v1.0</span>
-              </div>
-              <div class="demo-controls">
-                <button class="btn" id="pf-new">Regenerate</button>
-                <button class="btn alt" id="pf-reset">Reset selection</button>
-                <span class="ctrl-label">Speed</span>
-                <button class="btn alt" id="pf-speed">Fast</button>
-                <span class="ctrl-label">Nodes</span>
-                <span class="ctrl-val" id="pf-nodes">—</span>
-              </div>
-              <canvas id="pf-canvas"></canvas>
-              <div class="demo-readout">
-                <span>State<b id="pf-state">Ready — click a node</b></span>
-                <span>Visited<b id="pf-visited">0</b></span>
-                <span>Frontier<b id="pf-frontier">0</b></span>
-                <span>Length<b id="pf-len">—</b></span>
-                <span>Distance<b id="pf-dist">—</b></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJECT 002 — ASL Detection -->
-        <div class="item has-demo">
-          <div>
-            <div class="demo-header">
-              <span class="demo-num">P.002 · NOV 2025</span>
-              <a class="demo-repo" href="https://github.com/kirbasaylin/asl-detection" target="_blank" rel="noopener">
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                kirbasaylin/asl-detection
-              </a>
-            </div>
-            <h3 class="item-title">ASL Detection Model</h3>
-            <p class="item-desc">End-to-end ML pipeline for real-time ASL recognition: MediaPipe extracts 21 hand landmarks per frame, then a TensorFlow MLP maps the normalized 63-dim feature vector to a letter class. <strong style="color: var(--slate-lightest);">Try it →</strong> grant camera permission and raise your hand. The browser version runs MediaPipe HandPose and shows the same landmarks the classifier sees.</p>
-            <div class="tags">
-              <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">MediaPipe</span><span class="tag">OpenCV</span><span class="tag">NumPy</span>
-            </div>
-
-            <div class="demo-stage">
-              <div class="demo-bar">
-                <span><span class="dots"><i></i><i></i><i></i></span>asl-detection · webcam</span>
-                <span id="asl-status">Standby</span>
-              </div>
-              <div class="demo-controls">
-                <button class="btn" id="asl-start">Start webcam</button>
-                <button class="btn alt" id="asl-stop" disabled>Stop</button>
-                <span class="ctrl-label">Hand</span>
-                <span class="ctrl-val" id="asl-hand">—</span>
-                <span class="ctrl-label">FPS</span>
-                <span class="ctrl-val" id="asl-fps">—</span>
-              </div>
-              <div class="vid-wrap">
-                <video id="asl-video" playsinline muted></video>
-                <canvas id="asl-canvas"></canvas>
-                <div class="word-bar" id="asl-wordbar" style="display:none;">
-                  <span class="lbl">Tracking</span>
-                  <span class="val" id="asl-word">—</span>
-                  <div class="progress"><i id="asl-prog"></i></div>
-                </div>
-                <div class="vid-ph" id="asl-ph">
-                  <div class="ico">✋</div>
-                  <div class="ttl">Press start to begin</div>
-                  <small>You'll be asked for camera permission. The video stays on your device — no frames are uploaded.</small>
-                </div>
-              </div>
-              <div class="demo-readout">
-                <span>Model<b>MediaPipe HandPose</b></span>
-                <span>Keypoints<b id="asl-kp">0 / 21</b></span>
-                <span>Confidence<b id="asl-conf">—</b></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJECT 003 — Face / Deepfake -->
-        <div class="item has-demo">
-          <div>
-            <div class="demo-header">
-              <span class="demo-num">P.003 · AUG 2025</span>
-              <a class="demo-repo" href="https://github.com/kirbasaylin/deepfake-detection" target="_blank" rel="noopener">
-                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                kirbasaylin/deepfake-detection
-              </a>
-            </div>
-            <h3 class="item-title">Face &amp; Deepfake Detection</h3>
-            <p class="item-desc">A face-detection pipeline feeding a compact PyTorch CNN classifier. OpenCV finds faces, crops them to 96×96, and a 5-block convnet (~102k params) outputs real/fake probabilities. <strong style="color: var(--slate-lightest);">Try it →</strong> the browser demo runs the detection stage live (TF.js BlazeFace), drawing bounding boxes and the six facial landmarks the classifier uses.</p>
-            <div class="tags">
-              <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">OpenCV</span><span class="tag">CNN</span>
-            </div>
-
-            <div class="demo-stage">
-              <div class="demo-bar">
-                <span><span class="dots"><i></i><i></i><i></i></span>face-detection · webcam</span>
-                <span id="cv-statushdr">Standby</span>
-              </div>
-              <div class="demo-controls">
-                <button class="btn" id="cv-start">Start webcam</button>
-                <button class="btn alt" id="cv-stop" disabled>Stop</button>
-                <span class="ctrl-label">Faces</span>
-                <span class="ctrl-val" id="cv-faces">—</span>
-                <span class="ctrl-label">FPS</span>
-                <span class="ctrl-val" id="cv-fps">—</span>
-              </div>
-              <div class="vid-wrap">
-                <video id="cv-video" playsinline muted></video>
-                <canvas id="cv-canvas"></canvas>
-                <div class="vid-ph" id="cv-ph">
-                  <div class="ico">◉</div>
-                  <div class="ttl">Press start to begin</div>
-                  <small>Loads ~3 MB on first start. The video stays on your device — no frames are uploaded.</small>
-                </div>
-              </div>
-              <div class="demo-readout">
-                <span>Model<b>BlazeFace (TF.js)</b></span>
-                <span>Landmarks / face<b>6</b></span>
-                <span>State<b id="cv-status">Standby</b></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SKILLS -->
-      <section id="skills">
-        <div class="section-header">Skills</div>
-        <ul class="skills-grid">
-          <li>Python</li>
-          <li>C++</li>
-          <li>SQL / MySQL</li>
-          <li>VHDL</li>
-          <li>Bash</li>
-          <li>MATLAB</li>
-          <li>PyTorch</li>
-          <li>TensorFlow</li>
-          <li>MediaPipe</li>
-          <li>OpenCV</li>
-          <li>Docker</li>
-          <li>Kubernetes</li>
-          <li>CI/CD (Jenkins, GitLab)</li>
-          <li>Linux administration</li>
-          <li>Git</li>
-          <li>REST APIs</li>
-          <li>FPGA / Altera DE2</li>
-          <li>Quartus / ModelSim</li>
-          <li>Siemens NX</li>
-          <li>ArcGIS</li>
-          <li>Looker Studio</li>
-          <li>Simulink</li>
-        </ul>
-
-        <div class="footer">
-          <p>Designed in Figma. Built with HTML, CSS, and JS. Hosted on GitHub Pages.</p>
-          <p class="built">© 2026 Aylin Kirbas · Cincinnati, OH</p>
-        </div>
-      </section>
-
-    </main>
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="dot"></span>Aylin Kirbas</a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact" class="cta">Contact</a>
+    </nav>
   </div>
+</header>
+
+<a id="top"></a>
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="eyebrow anim d1"><span class="ln"></span><span class="mono">ECE + GIS · The Ohio State University</span></div>
+    <h1 class="anim d2">Aylin Kirbas</h1>
+    <p class="role-sub anim d2">Engineer &amp; <em>builder</em></p>
+    <p class="lede anim d3">
+      I build at the intersection of <strong>embedded hardware</strong>, <strong>computer vision</strong>, and <strong>spatial software</strong>, from real-time ML pipelines to C++ pathfinding engines and developer tooling.
+    </p>
+    <div class="hero-row anim d4">
+      <a class="btn primary" href="#projects">View projects
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a class="btn" href="https://github.com/kirbasaylin" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+      <a class="btn" href="https://www.linkedin.com/in/aylin-kirbas-200139267" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="about">
+    <div class="sec-head reveal"><span class="idx">01</span><h2>About</h2><span class="rule"></span></div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I'm a junior at <a href="https://www.osu.edu" target="_blank" rel="noopener">The Ohio State University</a> pursuing concurrent B.S. degrees in <strong>Electrical &amp; Computer Engineering</strong> and <strong>Geographic Information Science</strong>, with a specialization in Spatial Data Analytics.</p>
+        <p>My work has traced a line through aerospace, defense innovation, healthcare data, and geospatial intelligence. I'm currently a Software Development Intern at <strong>Siemens Digital Industries</strong> in Cincinnati, OH.</p>
+        <p>Earlier this year I evaluated dual-use AI/ML and autonomous systems for the Defense Innovation Unit at <a href="https://www.parallaxresearch.org/" target="_blank" rel="noopener">Parallax Advanced Research</a>. Before that I led science-mission design for an autonomous lunar/Mars drone through NASA L'SPACE, and built MySQL infrastructure for the National Geospatial-Intelligence Agency through AFRL.</p>
+        <p>Outside of engineering I play <strong>NCR D1-AA rugby</strong> for Ohio State, contribute to the Underwater Robotics Club, and serve in the Society of Women Engineers.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="fact"><div class="k">Focus</div><div class="v">Embedded · Computer Vision · Spatial Software</div></div>
+        <div class="fact"><div class="k">Education</div><div class="v">B.S. ECE &amp; B.S. GIS, Ohio State</div></div>
+        <div class="fact"><div class="k">Now</div><div class="v">SWE Intern @ Siemens Digital Industries</div></div>
+        <div class="fact"><div class="k">Based in</div><div class="v">Cincinnati / Columbus, OH</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section id="work">
+    <div class="sec-head reveal"><span class="idx">02</span><h2>Experience</h2><span class="rule"></span></div>
+    <div class="work-list">
+
+      <div class="role reveal">
+        <div class="role-when">Present<br/><span class="badge">Part-time</span></div>
+        <div>
+          <div class="role-co">Cognitive Systems Engineering Laboratory</div>
+          <div class="role-title">Undergraduate Research Assistant · The Ohio State University</div>
+          <p class="role-desc">Part-time undergraduate researcher at Ohio State's Cognitive Systems Engineering Laboratory, studying how people interact with complex, automated engineered systems.</p>
+          <div class="chips"><span class="chip">Research</span><span class="chip">Human factors</span><span class="chip">Cognitive systems</span></div>
+        </div>
+      </div>
+
+      <a class="role reveal" href="https://www.siemens.com/us/en/company/about/businesses/digital-industries.html" target="_blank" rel="noopener">
+        <div class="role-when">Summer 2026<br/><span class="badge">Current</span></div>
+        <div>
+          <div class="role-co">Siemens Digital Industries</div>
+          <div class="role-title">Software Development Intern · Cincinnati, OH</div>
+          <p class="role-desc">Building industrial software at the intersection of automation and engineering systems used across aerospace, automotive, and manufacturing.</p>
+          <div class="chips"><span class="chip">Software dev</span><span class="chip">Industrial software</span><span class="chip">Automation</span></div>
+        </div>
+      </a>
+
+      <a class="role reveal" href="https://www.parallaxresearch.org/" target="_blank" rel="noopener">
+        <div class="role-when">Jan to May 2026</div>
+        <div>
+          <div class="role-co">Parallax Advanced Research</div>
+          <div class="role-title">Engineering SME Intern · Columbus, OH</div>
+          <p class="role-desc">Evaluated AI/ML, autonomous, and sensor-based systems for the Defense Innovation Unit, assessing technical feasibility and deployment readiness on edge and data-center compute, and authoring technical briefings on architecture and integration risk.</p>
+          <div class="chips"><span class="chip">AI/ML</span><span class="chip">Edge compute</span><span class="chip">Tech briefings</span></div>
+        </div>
+      </a>
+
+      <div class="role reveal">
+        <div class="role-when">May to Aug 2025</div>
+        <div>
+          <div class="role-co">NASA L'SPACE</div>
+          <div class="role-title">Chief Scientist · Remote</div>
+          <p class="role-desc">Led scientific mission design for an autonomous drone concept, defining objectives via a Science Traceability Matrix for Moon and Mars exploration and driving cross-functional Agile design reviews.</p>
+          <div class="chips"><span class="chip">Systems eng.</span><span class="chip">Mission design</span><span class="chip">Agile</span></div>
+        </div>
+      </div>
+
+      <div class="role reveal">
+        <div class="role-when">Jul 2024 to Jul 2025</div>
+        <div>
+          <div class="role-co">OhioHealth</div>
+          <div class="role-title">Data Engineer Intern · Columbus, OH</div>
+          <p class="role-desc">Designed and maintained a centralized CMS database serving 10 hospitals; built optimized SQL queries that improved work-order accuracy and automated recurring data-validation workflows.</p>
+          <div class="chips"><span class="chip">SQL</span><span class="chip">MySQL</span><span class="chip">ETL</span></div>
+        </div>
+      </div>
+
+      <div class="role reveal">
+        <div class="role-when">Sep 2023 to Dec 2025</div>
+        <div>
+          <div class="role-co">Air Force Research Laboratory (AFRL)</div>
+          <div class="role-title">Research Assistant · Ohio State University</div>
+          <p class="role-desc">Built and maintained a MySQL system supporting program tracking for the National Geospatial-Intelligence Agency; automated ETL pipelines in Python and VBA and built interactive Looker Studio dashboards.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">MySQL</span><span class="chip">Looker Studio</span><span class="chip">VBA</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects">
+    <div class="sec-head reveal"><span class="idx">03</span><h2>Selected Projects</h2><span class="rule"></span></div>
+    <div class="proj-grid stagger">
+
+      <!-- P-01 TermsGuard -->
+      <a class="proj" href="https://github.com/kirbasaylin/termsguard" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-id">P-01 · 2026</span>
+          <span class="proj-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <h3 class="proj-title">TermsGuard</h3>
+        <p class="proj-desc">A Chrome extension that reads the fine print for you, flagging risky signup, trial, checkout, and subscription terms before you commit.</p>
+        <div class="proj-foot"><span class="tag lang">JavaScript</span><span class="tag">Chrome Extension</span><span class="tag">Browser UX</span></div>
+      </a>
+
+      <!-- P-02 TermsGuard Privacy -->
+      <a class="proj" href="https://github.com/kirbasaylin/termsguard-privacy" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-id">P-02 · 2026</span>
+          <span class="proj-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <h3 class="proj-title">TermsGuard · Privacy</h3>
+        <p class="proj-desc">The privacy-policy companion to TermsGuard. It surfaces how a service collects, shares, and retains user data so the trade-off is clear up front.</p>
+        <div class="proj-foot"><span class="tag lang">JavaScript</span><span class="tag">Privacy</span><span class="tag">Policy parsing</span></div>
+      </a>
+
+      <!-- P-03 PerfForge -->
+      <a class="proj" href="https://github.com/kirbasaylin/PerfForge" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-id">P-03 · 2026</span>
+          <span class="proj-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <h3 class="proj-title">PerfForge</h3>
+        <p class="proj-desc">A PyTorch performance linter that statically detects expensive training anti-patterns, the kind that quietly burn GPU hours, before a single epoch runs.</p>
+        <div class="proj-foot"><span class="tag lang">Python</span><span class="tag">PyTorch</span><span class="tag">Static analysis</span><span class="tag">GPU</span></div>
+      </a>
+
+      <!-- P-04 Agentic Doc Assistant -->
+      <a class="proj" href="https://github.com/kirbasaylin/agentic-doc-assistant" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-id">P-04 · 2026</span>
+          <span class="proj-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <h3 class="proj-title">Agentic Doc Assistant</h3>
+        <p class="proj-desc">A retrieval-augmented document assistant: a LangChain agent answers questions over your PDFs, served through a clean FastAPI backend.</p>
+        <div class="proj-foot"><span class="tag lang">Python</span><span class="tag">LangChain</span><span class="tag">FastAPI</span><span class="tag">RAG</span></div>
+      </a>
+
+      <!-- P-05 GeoJSON Pathfinder -->
+      <a class="proj" href="https://github.com/kirbasaylin/geojson-pathfinder" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-id">P-05 · 2026</span>
+          <span class="proj-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <h3 class="proj-title">GeoJSON Pathfinder</h3>
+        <p class="proj-desc">A streaming GeoJSON pathfinding engine in C++17. Parses spatial datasets into a graph and runs Dijkstra over an indexed binary min-heap, with sub-millisecond queries on city-scale road networks.</p>
+        <div class="proj-foot"><span class="tag lang">C++17</span><span class="tag">Dijkstra</span><span class="tag">CMake</span><span class="tag">GoogleTest</span></div>
+      </a>
+
+      <!-- P-06 ASL Detection -->
+      <a class="proj" href="https://github.com/kirbasaylin/asl-detection" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-id">P-06 · 2025</span>
+          <span class="proj-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <h3 class="proj-title">ASL Detection</h3>
+        <p class="proj-desc">Real-time American Sign Language recognition. MediaPipe extracts 21 hand landmarks per frame; a compact TensorFlow MLP maps them to letters with sub-millisecond inference on CPU.</p>
+        <div class="proj-foot"><span class="tag lang">Python</span><span class="tag">TensorFlow</span><span class="tag">MediaPipe</span><span class="tag">OpenCV</span></div>
+      </a>
+
+      <!-- P-07 Deepfake Detection -->
+      <a class="proj" href="https://github.com/kirbasaylin/deepfake-detection" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-id">P-07 · 2025</span>
+          <span class="proj-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
+        <h3 class="proj-title">Deepfake Detection</h3>
+        <p class="proj-desc">A real-time face-detection and deepfake-classification pipeline. OpenCV locates faces; a compact PyTorch CNN labels each crop real or fake.</p>
+        <div class="proj-foot"><span class="tag lang">Python</span><span class="tag">PyTorch</span><span class="tag">OpenCV</span><span class="tag">CNN</span></div>
+      </a>
+
+    </div>
+    <a class="more-link" href="https://github.com/kirbasaylin" target="_blank" rel="noopener">
+      See everything on GitHub
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <div class="sec-head reveal"><span class="idx">04</span><h2>Toolkit</h2><span class="rule"></span></div>
+    <div class="skill-grid reveal">
+      <div class="skill-col">
+        <h3>Languages</h3>
+        <ul><li>Python</li><li>C++</li><li>JavaScript</li><li>SQL / MySQL</li><li>VHDL</li><li>MATLAB</li><li>Bash</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>ML &amp; Vision</h3>
+        <ul><li>PyTorch</li><li>TensorFlow</li><li>MediaPipe</li><li>OpenCV</li><li>NumPy</li><li>LangChain</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>Infra &amp; Tooling</h3>
+        <ul><li>Docker</li><li>Kubernetes</li><li>CI/CD (Jenkins, GitLab)</li><li>FastAPI</li><li>Linux admin</li><li>Git</li><li>REST APIs</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>Hardware &amp; Spatial</h3>
+        <ul><li>FPGA / Altera DE2</li><li>Quartus / ModelSim</li><li>Simulink</li><li>Siemens NX</li><li>ArcGIS</li><li>Looker Studio</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="contact reveal">
+    <span class="mono">What's next</span>
+    <h2>Let's build<br/>something. <a href="mailto:aylinnkirbas_@outlook.com">Say hello →</a></h2>
+    <p>Always happy to talk about embedded systems, computer vision, or spatial software.</p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:aylinnkirbas_@outlook.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email me
+      </a>
+      <a class="btn" href="https://github.com/kirbasaylin" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/aylin-kirbas-200139267" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+
 </div>
 
-<script>
-/* spotlight cursor */
-document.addEventListener('mousemove', e => {
-  document.body.style.setProperty('--mx', e.clientX + 'px');
-  document.body.style.setProperty('--my', e.clientY + 'px');
-});
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 Aylin Kirbas</span>
+    <span>Built with HTML, CSS, and JS. Hosted on GitHub Pages.</span>
+  </div>
+</footer>
 
-/* nav active state */
-(function () {
-  const sections = document.querySelectorAll('main section[id]');
-  const links = document.querySelectorAll('.nav-link');
+<script>
+  /* nav: shadow on scroll + active link */
+  const nav = document.getElementById('nav');
+  const links = document.querySelectorAll('.nav-links a');
   const linkFor = id => Array.from(links).find(a => a.getAttribute('href') === '#' + id);
-  const io = new IntersectionObserver(entries => {
+
+  addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', scrollY > 12);
+  }, { passive: true });
+
+  const secObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
+      if (e.isIntersecting && e.target.id) {
         links.forEach(a => a.classList.remove('active'));
         const l = linkFor(e.target.id);
         if (l) l.classList.add('active');
       }
     });
-  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-  sections.forEach(s => io.observe(s));
-})();
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section[id]').forEach(s => secObserver.observe(s));
 
-/* ===== DEMO 1: GeoJSON / Dijkstra ===== */
-(function () {
-  const cv = document.getElementById('pf-canvas');
-  if (!cv) return;
-  const ctx = cv.getContext('2d');
-  const els = {
-    rand: document.getElementById('pf-new'),
-    reset: document.getElementById('pf-reset'),
-    speed: document.getElementById('pf-speed'),
-    nodes: document.getElementById('pf-nodes'),
-    state: document.getElementById('pf-state'),
-    visited: document.getElementById('pf-visited'),
-    frontier: document.getElementById('pf-frontier'),
-    len: document.getElementById('pf-len'),
-    dist: document.getElementById('pf-dist'),
-  };
-  let nodes = [], adj = [], edges = [];
-  let src = null, dst = null;
-  let visited = new Set(), inFrontier = new Set(), path = [];
-  let timer = null;
-  let speedName = 'Fast';
-  const SPEEDS = { Slow: 140, Normal: 60, Fast: 22, Instant: 0 };
-  const COLOR = {
-    edge: 'rgba(35, 53, 84, 0.5)',
-    edgeVisited: 'rgba(100, 255, 218, 0.35)',
-    edgePath: '#64ffda',
-    nodeBase: '#8892b0',
-    nodeFront: '#a8b2d1',
-    nodeVisited: '#ccd6f6',
-    nodePath: '#64ffda',
-    src: '#64ffda',
-    dst: '#ffd166',
-    grid: 'rgba(35, 53, 84, 0.25)',
-  };
-
-  function resize() {
-    const r = cv.getBoundingClientRect();
-    cv.width = r.width * devicePixelRatio;
-    cv.height = r.height * devicePixelRatio;
-    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-  }
-  window.addEventListener('resize', () => { resize(); draw(); });
-
-  function dist2D(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
-
-  function generate() {
-    const r = cv.getBoundingClientRect();
-    const N = 22 + Math.floor(Math.random() * 8);
-    nodes = [];
-    const pad = 36;
-    let tries = 0;
-    while (nodes.length < N && tries < 2000) {
-      tries++;
-      const x = pad + Math.random() * (r.width - 2 * pad);
-      const y = pad + Math.random() * (r.height - 2 * pad);
-      if (nodes.every(n => dist2D(n, { x, y }) > 55)) {
-        nodes.push({ x, y, id: nodes.length });
-      }
-    }
-    edges = [];
-    adj = nodes.map(() => []);
-    nodes.forEach(n => {
-      const others = nodes.filter(m => m !== n)
-        .map(m => ({ m, d: dist2D(n, m) }))
-        .sort((a, b) => a.d - b.d)
-        .slice(0, 2 + Math.floor(Math.random() * 2));
-      others.forEach(({ m, d }) => {
-        if (!adj[n.id].some(e => e.to === m.id)) {
-          adj[n.id].push({ to: m.id, w: d });
-          adj[m.id].push({ to: n.id, w: d });
-          edges.push({ a: n.id, b: m.id });
-        }
-      });
+  /* reveal on scroll */
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); revealObserver.unobserve(e.target); }
     });
-    resetSelection();
-    els.nodes.textContent = nodes.length;
-    draw();
-  }
-
-  function resetSelection() {
-    src = null; dst = null;
-    visited.clear(); inFrontier.clear(); path = [];
-    if (timer) { clearTimeout(timer); timer = null; }
-    els.state.textContent = 'Ready — click a node';
-    els.visited.textContent = '0';
-    els.frontier.textContent = '0';
-    els.len.textContent = '—';
-    els.dist.textContent = '—';
-    draw();
-  }
-
-  cv.addEventListener('click', e => {
-    const r = cv.getBoundingClientRect();
-    const px = e.clientX - r.left, py = e.clientY - r.top;
-    const hit = nodes.find(n => Math.hypot(n.x - px, n.y - py) < 14);
-    if (!hit) return;
-    if (src === null) {
-      src = hit.id;
-      els.state.textContent = 'Select a target node';
-      draw();
-    } else if (dst === null && hit.id !== src) {
-      dst = hit.id;
-      runDijkstra();
-    } else {
-      src = hit.id; dst = null;
-      visited.clear(); inFrontier.clear(); path = [];
-      els.state.textContent = 'Select a target node';
-      els.visited.textContent = '0'; els.frontier.textContent = '0';
-      els.len.textContent = '—'; els.dist.textContent = '—';
-      draw();
-    }
-  });
-
-  function runDijkstra() {
-    if (timer) { clearTimeout(timer); timer = null; }
-    visited.clear(); inFrontier.clear(); path = [];
-    els.state.textContent = 'Running Dijkstra…';
-
-    const D = new Array(nodes.length).fill(Infinity);
-    const prev = new Array(nodes.length).fill(-1);
-    D[src] = 0;
-    const frontier = [{ id: src, d: 0 }];
-    inFrontier.add(src);
-    const steps = [];
-
-    while (frontier.length) {
-      frontier.sort((a, b) => a.d - b.d);
-      const u = frontier.shift();
-      inFrontier.delete(u.id);
-      if (visited.has(u.id)) continue;
-      visited.add(u.id);
-      steps.push({ id: u.id, frontier: new Set(frontier.map(f => f.id)) });
-      if (u.id === dst) break;
-      for (const e of adj[u.id]) {
-        if (visited.has(e.to)) continue;
-        const nd = u.d + e.w;
-        if (nd < D[e.to]) {
-          D[e.to] = nd;
-          prev[e.to] = u.id;
-          frontier.push({ id: e.to, d: nd });
-          inFrontier.add(e.to);
-        }
-      }
-    }
-
-    const finalPath = [];
-    if (prev[dst] !== -1 || src === dst) {
-      let c = dst;
-      while (c !== -1) { finalPath.unshift(c); if (c === src) break; c = prev[c]; }
-    }
-
-    visited.clear(); inFrontier.clear();
-    let i = 0;
-    const tick = () => {
-      if (i >= steps.length) {
-        path = finalPath;
-        els.state.textContent = finalPath.length ? 'Optimal path found' : 'No path exists';
-        els.len.textContent = finalPath.length ? finalPath.length + ' nodes' : '∞';
-        els.dist.textContent = finalPath.length ? D[dst].toFixed(1) + ' u' : '∞';
-        draw();
-        return;
-      }
-      const s = steps[i++];
-      visited.add(s.id);
-      inFrontier = s.frontier;
-      els.visited.textContent = visited.size;
-      els.frontier.textContent = inFrontier.size;
-      draw();
-      const delay = SPEEDS[speedName];
-      if (delay === 0) {
-        while (i < steps.length) {
-          const ss = steps[i++];
-          visited.add(ss.id);
-          inFrontier = ss.frontier;
-        }
-        tick();
-      } else {
-        timer = setTimeout(tick, delay);
-      }
-    };
-    tick();
-  }
-
-  function draw() {
-    const r = cv.getBoundingClientRect();
-    ctx.clearRect(0, 0, r.width, r.height);
-
-    // grid
-    ctx.strokeStyle = COLOR.grid;
-    ctx.lineWidth = 0.5;
-    for (let x = 0; x < r.width; x += 36) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, r.height); ctx.stroke();
-    }
-    for (let y = 0; y < r.height; y += 36) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(r.width, y); ctx.stroke();
-    }
-
-    edges.forEach(e => {
-      const a = nodes[e.a], b = nodes[e.b];
-      const onPath = path.length > 0 && path.some((p, i) =>
-        i > 0 && ((path[i - 1] === e.a && p === e.b) || (path[i - 1] === e.b && p === e.a)));
-      if (onPath) { ctx.strokeStyle = COLOR.edgePath; ctx.lineWidth = 2.5; }
-      else if (visited.has(e.a) && visited.has(e.b)) { ctx.strokeStyle = COLOR.edgeVisited; ctx.lineWidth = 1.5; }
-      else { ctx.strokeStyle = COLOR.edge; ctx.lineWidth = 1; }
-      ctx.beginPath();
-      ctx.moveTo(a.x, a.y);
-      ctx.lineTo(b.x, b.y);
-      ctx.stroke();
-    });
-
-    nodes.forEach(n => {
-      let color = COLOR.nodeBase, size = 4, ring = false;
-      if (n.id === src) { color = COLOR.src; size = 8; ring = true; }
-      else if (n.id === dst) { color = COLOR.dst; size = 8; ring = true; }
-      else if (path.includes(n.id)) { color = COLOR.nodePath; size = 6; }
-      else if (visited.has(n.id)) { color = COLOR.nodeVisited; size = 5; }
-      else if (inFrontier.has(n.id)) { color = COLOR.nodeFront; size = 5; }
-      if (ring) {
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, size + 5, 0, 2 * Math.PI);
-        ctx.stroke();
-      }
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, size, 0, 2 * Math.PI);
-      ctx.fill();
-    });
-  }
-
-  els.rand.addEventListener('click', generate);
-  els.reset.addEventListener('click', resetSelection);
-  els.speed.addEventListener('click', () => {
-    const order = ['Slow', 'Normal', 'Fast', 'Instant'];
-    speedName = order[(order.indexOf(speedName) + 1) % order.length];
-    els.speed.textContent = speedName;
-  });
-
-  const io = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        resize(); generate(); observer.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin: '200px' });
-  io.observe(cv);
-})();
-
-/* ===== DEMOS 2 & 3: Webcam ML (lazy-loaded TF.js) ===== */
-(function () {
-  let tfLoaded = false, handposeModel = null, blazefaceModel = null;
-
-  function loadScript(src) {
-    return new Promise((res, rej) => {
-      if (document.querySelector(`script[src="${src}"]`)) { res(); return; }
-      const s = document.createElement('script');
-      s.src = src; s.onload = res; s.onerror = rej;
-      document.head.appendChild(s);
-    });
-  }
-  async function loadTF() {
-    if (tfLoaded) return;
-    await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js');
-    await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose@0.0.7/dist/handpose.min.js');
-    await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface@0.1.0/dist/blazeface.min.js');
-    tfLoaded = true;
-  }
-
-  /* ASL (HandPose) */
-  (function () {
-    const startBtn = document.getElementById('asl-start');
-    if (!startBtn) return;
-    const stopBtn = document.getElementById('asl-stop');
-    const video = document.getElementById('asl-video');
-    const canvas = document.getElementById('asl-canvas');
-    const ph = document.getElementById('asl-ph');
-    const wordbar = document.getElementById('asl-wordbar');
-    const statusEl = document.getElementById('asl-status');
-    const handEl = document.getElementById('asl-hand');
-    const fpsEl = document.getElementById('asl-fps');
-    const kpEl = document.getElementById('asl-kp');
-    const confEl = document.getElementById('asl-conf');
-    const progEl = document.getElementById('asl-prog');
-    const wordEl = document.getElementById('asl-word');
-    const ctx = canvas.getContext('2d');
-    let stream = null, running = false;
-    let frames = 0, fpsLast = performance.now();
-    const PAIRS = [
-      [0,1],[1,2],[2,3],[3,4],
-      [0,5],[5,6],[6,7],[7,8],
-      [0,9],[9,10],[10,11],[11,12],
-      [0,13],[13,14],[14,15],[15,16],
-      [0,17],[17,18],[18,19],[19,20],
-      [5,9],[9,13],[13,17],
-    ];
-
-    async function start() {
-      startBtn.disabled = true;
-      try {
-        statusEl.textContent = 'Loading…';
-        ph.querySelector('.ttl').textContent = 'Loading TF.js (~3 MB)';
-        await loadTF();
-        stream = await navigator.mediaDevices.getUserMedia({
-          video: { width: 640, height: 480, facingMode: 'user' }, audio: false,
-        });
-        video.srcObject = stream;
-        await video.play();
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        ph.style.display = 'none';
-        wordbar.style.display = 'flex';
-        if (!handposeModel) handposeModel = await handpose.load();
-        statusEl.textContent = 'Live';
-        stopBtn.disabled = false;
-        running = true;
-        loop();
-      } catch (e) {
-        ph.style.display = 'flex';
-        ph.querySelector('.ttl').textContent = 'Camera unavailable';
-        ph.querySelector('small').textContent = e.message || 'Permission denied or no camera available.';
-        startBtn.disabled = false;
-        statusEl.textContent = 'Error';
-      }
-    }
-
-    function stop() {
-      running = false;
-      if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
-      video.srcObject = null;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ph.style.display = 'flex';
-      wordbar.style.display = 'none';
-      ph.querySelector('.ttl').textContent = 'Press start to begin';
-      ph.querySelector('small').textContent = "You'll be asked for camera permission. The video stays on your device — no frames are uploaded.";
-      startBtn.disabled = false;
-      stopBtn.disabled = true;
-      statusEl.textContent = 'Standby';
-      handEl.textContent = '—'; fpsEl.textContent = '—'; kpEl.textContent = '0 / 21'; confEl.textContent = '—';
-    }
-
-    async function loop() {
-      if (!running) return;
-      try {
-        const preds = await handposeModel.estimateHands(video);
-        ctx.save();
-        ctx.setTransform(-1, 0, 0, 1, canvas.width, 0);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        if (preds.length) {
-          handEl.textContent = 'Detected';
-          const p = preds[0];
-          const kp = p.landmarks;
-          kpEl.textContent = kp.length + ' / 21';
-          const conf = p.handInViewConfidence;
-          confEl.textContent = (conf * 100).toFixed(0) + '%';
-          progEl.style.width = (conf * 100) + '%';
-          wordEl.textContent = kp.length + ' landmarks tracked';
-
-          ctx.strokeStyle = '#64ffda';
-          ctx.lineWidth = 2.5;
-          PAIRS.forEach(([a, b]) => {
-            ctx.beginPath();
-            ctx.moveTo(kp[a][0], kp[a][1]);
-            ctx.lineTo(kp[b][0], kp[b][1]);
-            ctx.stroke();
-          });
-          kp.forEach((pt, i) => {
-            ctx.fillStyle = i === 0 ? '#ffd166' : '#e6f1ff';
-            ctx.strokeStyle = '#64ffda';
-            ctx.lineWidth = 1.2;
-            ctx.beginPath();
-            ctx.arc(pt[0], pt[1], i === 0 ? 6 : 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.stroke();
-          });
-        } else {
-          handEl.textContent = 'None';
-          kpEl.textContent = '0 / 21';
-          confEl.textContent = '—';
-          progEl.style.width = '0%';
-          wordEl.textContent = 'Raise a hand to the camera';
-        }
-        ctx.restore();
-        frames++;
-        const now = performance.now();
-        if (now - fpsLast > 500) {
-          fpsEl.textContent = (frames * 1000 / (now - fpsLast)).toFixed(1);
-          frames = 0; fpsLast = now;
-        }
-      } catch (e) { console.warn(e); }
-      requestAnimationFrame(loop);
-    }
-
-    startBtn.addEventListener('click', start);
-    stopBtn.addEventListener('click', stop);
-  })();
-
-  /* Face / Deepfake (BlazeFace) */
-  (function () {
-    const startBtn = document.getElementById('cv-start');
-    if (!startBtn) return;
-    const stopBtn = document.getElementById('cv-stop');
-    const video = document.getElementById('cv-video');
-    const canvas = document.getElementById('cv-canvas');
-    const ph = document.getElementById('cv-ph');
-    const statushdr = document.getElementById('cv-statushdr');
-    const facesEl = document.getElementById('cv-faces');
-    const fpsEl = document.getElementById('cv-fps');
-    const statusEl = document.getElementById('cv-status');
-    const ctx = canvas.getContext('2d');
-    let stream = null, running = false;
-    let frames = 0, fpsLast = performance.now();
-
-    async function start() {
-      startBtn.disabled = true;
-      try {
-        statushdr.textContent = 'Loading…';
-        ph.querySelector('.ttl').textContent = 'Loading TF.js (~3 MB)';
-        await loadTF();
-        stream = await navigator.mediaDevices.getUserMedia({
-          video: { width: 640, height: 480, facingMode: 'user' }, audio: false,
-        });
-        video.srcObject = stream;
-        await video.play();
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        ph.style.display = 'none';
-        if (!blazefaceModel) blazefaceModel = await blazeface.load();
-        statusEl.textContent = 'Live';
-        statushdr.textContent = 'Live';
-        stopBtn.disabled = false;
-        running = true;
-        loop();
-      } catch (e) {
-        ph.style.display = 'flex';
-        ph.querySelector('.ttl').textContent = 'Camera unavailable';
-        ph.querySelector('small').textContent = e.message || 'Permission denied or no camera available.';
-        startBtn.disabled = false;
-        statushdr.textContent = 'Error';
-      }
-    }
-
-    function stop() {
-      running = false;
-      if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
-      video.srcObject = null;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ph.style.display = 'flex';
-      ph.querySelector('.ttl').textContent = 'Press start to begin';
-      ph.querySelector('small').textContent = 'Loads ~3 MB on first start. The video stays on your device — no frames are uploaded.';
-      startBtn.disabled = false;
-      stopBtn.disabled = true;
-      statusEl.textContent = 'Standby';
-      statushdr.textContent = 'Standby';
-      facesEl.textContent = '—'; fpsEl.textContent = '—';
-    }
-
-    async function loop() {
-      if (!running) return;
-      try {
-        const preds = await blazefaceModel.estimateFaces(video, false);
-        ctx.save();
-        ctx.setTransform(-1, 0, 0, 1, canvas.width, 0);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        facesEl.textContent = preds.length;
-        preds.forEach((p) => {
-          const [x1, y1] = p.topLeft, [x2, y2] = p.bottomRight;
-          ctx.strokeStyle = '#64ffda';
-          ctx.lineWidth = 2;
-          const c = 14;
-          ctx.beginPath();
-          ctx.moveTo(x1, y1 + c); ctx.lineTo(x1, y1); ctx.lineTo(x1 + c, y1);
-          ctx.moveTo(x2 - c, y1); ctx.lineTo(x2, y1); ctx.lineTo(x2, y1 + c);
-          ctx.moveTo(x2, y2 - c); ctx.lineTo(x2, y2); ctx.lineTo(x2 - c, y2);
-          ctx.moveTo(x1 + c, y2); ctx.lineTo(x1, y2); ctx.lineTo(x1, y2 - c);
-          ctx.stroke();
-          ctx.fillStyle = '#ffd166';
-          (p.landmarks || []).forEach(([lx, ly]) => {
-            ctx.beginPath();
-            ctx.arc(lx, ly, 3, 0, 2 * Math.PI);
-            ctx.fill();
-          });
-        });
-        ctx.restore();
-        frames++;
-        const now = performance.now();
-        if (now - fpsLast > 500) {
-          fpsEl.textContent = (frames * 1000 / (now - fpsLast)).toFixed(1);
-          frames = 0; fpsLast = now;
-        }
-      } catch (e) { console.warn(e); }
-      requestAnimationFrame(loop);
-    }
-
-    startBtn.addEventListener('click', start);
-    stopBtn.addEventListener('click', stop);
-  })();
-})();
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  document.querySelectorAll('.reveal, .stagger').forEach(el => revealObserver.observe(el));
 </script>
 
 </body>
