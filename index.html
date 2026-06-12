@@ -187,6 +187,29 @@
   .proj-foot { display:flex; align-items:center; flex-wrap:wrap; gap: 8px 8px; }
   .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing:0.03em; color: var(--dim); padding: 4px 9px; border-radius: 100px; background: rgba(255,255,255,0.04); border:1px solid var(--line-2); }
   .tag.lang { color: var(--accent); border-color: var(--accent-soft); }
+
+  /* featured case-study card (the one project with an in-site write-up) */
+  .proj.feat {
+    grid-column: 1 / -1;
+    display:grid; grid-template-columns: 1.55fr 1fr; gap: 34px; align-items:center;
+    padding: 32px 32px;
+    background:
+      radial-gradient(420px 240px at 100% 0%, rgba(95,242,194,0.06), transparent 70%),
+      var(--card);
+    border-color: var(--line);
+  }
+  .proj.feat .proj-id .cs { color: var(--accent); }
+  .proj.feat .proj-title { font-size: 28px; margin-bottom: 12px; }
+  .proj.feat .proj-desc { font-size: 15px; max-width: 52ch; }
+  .feat-cta { margin-top: 20px; display:inline-flex; align-items:center; gap: 9px; font-family: var(--mono); font-size: 11px; letter-spacing:0.1em; text-transform:uppercase; color: var(--accent); }
+  .feat-cta svg { width: 15px; height: 15px; transition: transform .25s ease; }
+  .proj.feat:hover .feat-cta svg { transform: translateX(4px); }
+  .feat-art { display:flex; align-items:center; justify-content:center; }
+  .feat-art svg { width: 100%; max-width: 200px; height:auto; opacity:.92; }
+  @media (max-width: 760px){
+    .proj.feat { grid-template-columns: 1fr; gap: 22px; padding: 26px 24px; }
+    .proj.feat .feat-art { display:none; }
+  }
   @media (max-width: 760px){ .proj-grid{ grid-template-columns:1fr; } }
 
   .more-link { margin-top: 30px; display:inline-flex; align-items:center; gap:10px; font-family: var(--mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color: var(--dim); transition: color .2s ease; }
@@ -227,6 +250,7 @@
   .js .stagger.in > *:nth-child(5){ transition-delay:.33s }
   .js .stagger.in > *:nth-child(6){ transition-delay:.40s }
   .js .stagger.in > *:nth-child(7){ transition-delay:.47s }
+  .js .stagger.in > *:nth-child(8){ transition-delay:.54s }
 
   /* hero load-in */
   .js .hero .anim { opacity:0; transform: translateY(26px); animation: rise .9s cubic-bezier(.2,.7,.3,1) forwards; }
@@ -373,6 +397,24 @@
   <section id="projects">
     <div class="sec-head reveal"><span class="idx">03</span><h2>Selected Projects</h2><span class="rule"></span></div>
     <div class="proj-grid stagger">
+
+      <!-- P-08 Digital Comms Simulator — FEATURED case study -->
+      <a class="proj feat" href="digital-comms-simulator.html">
+        <div class="feat-main">
+          <div class="proj-top">
+            <span class="proj-id">P-08 · 2026 · <span class="cs">CASE STUDY</span></span>
+          </div>
+          <h3 class="proj-title">Digital Comms Simulator</h3>
+          <p class="proj-desc">A complete digital radio link in MATLAB — Gray-coded BPSK/QPSK/QAM, AWGN and Rayleigh channels, RRC pulse shaping, and Monte-Carlo bit-error-rate verified against textbook theory. Built on base MATLAB, no toolboxes.</p>
+          <div class="proj-foot"><span class="tag lang">MATLAB</span><span class="tag">DSP</span><span class="tag">Comms</span><span class="tag">Monte-Carlo</span></div>
+          <span class="feat-cta">Read the case study
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+        <div class="feat-art" aria-hidden="true">
+          <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="90" y1="14" x2="90" y2="166" stroke="rgba(95,242,194,0.14)" stroke-width="1"/><line x1="14" y1="90" x2="166" y2="90" stroke="rgba(95,242,194,0.14)" stroke-width="1"/><circle cx="30" cy="30" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="30" cy="30" r="2.4" fill="#ececeb"/><circle cx="30" cy="70" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="30" cy="70" r="2.4" fill="#ececeb"/><circle cx="30" cy="110" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="30" cy="110" r="2.4" fill="#ececeb"/><circle cx="30" cy="150" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="30" cy="150" r="2.4" fill="#ececeb"/><circle cx="70" cy="30" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="70" cy="30" r="2.4" fill="#ececeb"/><circle cx="70" cy="70" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="70" cy="70" r="2.4" fill="#ececeb"/><circle cx="70" cy="110" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="70" cy="110" r="2.4" fill="#ececeb"/><circle cx="70" cy="150" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="70" cy="150" r="2.4" fill="#ececeb"/><circle cx="110" cy="30" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="110" cy="30" r="2.4" fill="#ececeb"/><circle cx="110" cy="70" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="110" cy="70" r="2.4" fill="#ececeb"/><circle cx="110" cy="110" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="110" cy="110" r="2.4" fill="#ececeb"/><circle cx="110" cy="150" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="110" cy="150" r="2.4" fill="#ececeb"/><circle cx="150" cy="30" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="150" cy="30" r="2.4" fill="#ececeb"/><circle cx="150" cy="70" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="150" cy="70" r="2.4" fill="#ececeb"/><circle cx="150" cy="110" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="150" cy="110" r="2.4" fill="#ececeb"/><circle cx="150" cy="150" r="6.5" stroke="rgba(95,242,194,0.55)" stroke-width="1"/><circle cx="150" cy="150" r="2.4" fill="#ececeb"/></svg>
+        </div>
+      </a>
 
       <!-- P-01 TermsGuard -->
       <a class="proj" href="https://github.com/kirbasaylin/termsguard" target="_blank" rel="noopener">
